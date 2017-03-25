@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Linker Demo</title>
+
+    <link rel="stylesheet" href="linker.min.css">
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="linker"></div>
+
+    <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+    <script src="linker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var linker = $('#linker').linker();
+
+            // add a node
+            var node1 = linker.node({id: 'first', name: 'First Node', x: 100, y: 100});
+
+            // when the node position change
+            node1.onDrag = function (x, y) {
+                console.log(x, y, this); // print the new position and the node object
+            };
+
+            // trigger when delete the node
+            node1.onRemove = function () {
+                console.log(this); // print the node object
+            };
+
+            // trigger when setting icon clicked
+            node1.onSetting = function () {
+                alert('Setting ' + this.name);
+            };
+
+            // add an input
+            node1.input('input_id', 'Input Name');
+
+            // add an output
+            var node1_out = node1.output('output_id', 'Output Name');
+
+            // trigger when this output connect to new input
+            node1_out.onConnect = function (input) {
+                console.log(this, input); // print the output and the input objects
+            };
+
+            // trigger when this output link remove
+            node1_out.onRemove = function (index) {
+                console.log(index)
+            };
+
+            // add node 2
+            var node2 = linker.node({id: 'second', name: 'Second Node', x: 400, y: 200});
+            var node2_in = node2.input('input_id', 'Input Name');
+
+            node2.onSetting = function () {
+                alert('Setting ' + this.name);
+            };
+
+            // add path between two nodes
+            node1_out.connect(node2_in);
+        });
+    </script>
+</body>
+</html>
