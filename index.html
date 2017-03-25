@@ -20,7 +20,7 @@
             var linker = $('#linker').linker();
 
             // add a node
-            var node1 = linker.node({id: 'first', name: 'First Node', x: 100, y: 100});
+            var node1 = linker.node({id: 'first', name: 'Node #1', x: 100, y: 100});
 
             // when the node position change
             node1.onDrag = function (x, y) {
@@ -54,7 +54,7 @@
             };
 
             // add node 2
-            var node2 = linker.node({id: 'second', name: 'Second Node', x: 400, y: 200});
+            var node2 = linker.node({id: 'second', name: 'Node #2', x: 400, y: 200});
             var node2_in = node2.input('input_id', 'Input Name');
 
             node2.onSetting = function () {
@@ -63,6 +63,14 @@
 
             // add path between two nodes
             node1_out.connect(node2_in);
+
+            // more nodes
+            var pos = [[400, 50], [700, 100], [1000, 100]];
+            for(var i = 0; i < 3; i++) {
+                var node = linker.node({id: 'node_' + i, name: 'Node #' + (i + 3), x: pos[i][0], y: pos[i][1]});
+                node.input('in', 'Input');
+                node.output('out', 'Output');
+            }
         });
     </script>
 </body>
