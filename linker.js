@@ -63,6 +63,7 @@
             var i = node.inputs.push({
                 __id: gid(),
                 id: id,
+                name: name,
                 node: node,
                 el: $('<div class="linker_point" data-type="input"></div>')
             });
@@ -84,6 +85,7 @@
             var i = node.outputs.push({
                 __id: gid(),
                 id: id,
+                name: name,
                 node: node,
                 el: $('<div class="linker_point" data-type="output"></div>')
             });
