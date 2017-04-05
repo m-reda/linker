@@ -8,6 +8,13 @@
  * Date: 2017-03-19
  */
 
+html, body {
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	position: fixed;
+}
+
 .linker_container
 {
 	background-color: #313749;

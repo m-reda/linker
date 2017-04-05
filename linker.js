@@ -11,9 +11,8 @@
 (function ( $ ) { $.fn.linker = function(options)
 {
     var lk = $('<div class="linker_board"><svg id="linker_paths"></svg></div>').appendTo(this),
-        settings = $.extend({settingIcon: true}, options );
-
-    $(this).addClass('linker_container');
+        settings = $.extend({settingIcon: true}, options ),
+        container = $(this).addClass('linker_container');
 
     /*
      *  nodes
@@ -202,7 +201,10 @@
      */
     var drag_node, drag_width = 0;
 
-    lk.on('mousedown', '.linker_node > h3', function (e) {
+    lk.on('mousedown touchstart', '.linker_node > h3', function (e) {
+        if(e.type == 'touchstart')
+            container.css('overflow', 'hidden');
+
     	if(e.target != this)
     		return;
 
@@ -210,7 +212,10 @@
         drag_width  = drag_node.width() / 2;
 
     })
-    .on('mouseup', function (e) {
+    .on('mouseup touchend', function (e) {
+        if(e.type == 'touchend')
+            container.css('overflow', 'auto');
+
         // trigger onDragFinish
         if(drag_node) {
 			var node = drag_node.data('obj');
@@ -220,7 +225,7 @@
 
         drag_node = null;
     })
-    .on("mousemove", function(e) {
+    .on("mousemove touchmove", function(e) {
         // drag
         if (drag_node) {
             drag_node.offset({top: e.pageY - 10, left: e.pageX - drag_width}).trigger('drag');
