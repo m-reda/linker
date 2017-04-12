@@ -6,6 +6,8 @@
 -------
 ![ScreenShot](https://github.com/m-reda/linker/raw/master/dist/ScreenShot.png "ScreenShot")
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1eff04c40cfd4f9ab84a8d2f5a8ccffe)](https://www.codacy.com/app/m-reda/linker?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=m-reda/linker&amp;utm_campaign=Badge_Grade)
+
 Linker is Node Editor Library, I built this library for a new project I'm working on, besides I was interested in building one.
 
 Note: This is a `beta` version.
